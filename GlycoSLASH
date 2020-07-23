@@ -1,0 +1,12 @@
+#!/bin/bash
+decoy="library/random.charge3.r3.mgf"
+glyco="library/glyco_library.mgf"
+msSLASH="/u/sujli/darwin_proteomics_2/glycan/msSLASH/msSLASH/bin/msSLASH"
+
+echo $decoy
+echo $glyco
+while IFS= read -r line
+do
+	$msSLASH -l $glyco -d $decoy -e $line -o "$line".GlycoSLASH.tsv
+done < $1
+
